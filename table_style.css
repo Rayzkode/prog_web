@@ -1,0 +1,40 @@
+/* Estilo general de la tabla */
+table {
+    width: 100%; /* Ancho de la tabla al 100% */
+    border-collapse: collapse; /* Elimina los bordes entre las celdas */
+    margin: 20px auto; /* Margen alrededor de la tabla */
+  }
+  
+  /* Estilo del encabezado de la tabla */
+  th {
+    background-color: #e7cdffc3; /* Color de fondo del encabezado */
+    text-align: left; /* Alineación del texto en el encabezado */
+    padding: 10px; /* Acolchado dentro de las celdas del encabezado */
+    border: 1px solid #CCC; /* Borde alrededor de las celdas del encabezado */
+  }
+  
+  /* Estilo de las filas de datos */
+  tr:nth-child(odd) {
+    background-color: #FFF; /* Color de fondo de las filas pares */
+  }
+  
+  tr:nth-child(even) {
+    background-color: #F8F8F8; /* Color de fondo de las filas impares */
+  }
+  
+  td {
+    padding: 10px; /* Acolchado dentro de las celdas de datos */
+    border: 1px solid #CCC; /* Borde alrededor de las celdas de datos */
+    text-align: left; /* Alineación del texto en las celdas de datos */
+  }
+  
+  /* Estilo de la última fila (total) */
+  .CRUD {
+    background-color: #FFF; /* Color de fondo de la fila total */
+    font-weight: bold; /* Texto en negrita para la fila total */
+  }
+  .CRUD a:hover{
+    transform: translateY(10px);
+    color: #7624c2; 
+  }
+  
