@@ -19,15 +19,30 @@ echo "<p>Escuela: $escuela</p>";
 echo "<p>Celular: $celular</p>";
 
 try {
+    // Prepare the SQL statement with placeholders
     $sql = "INSERT INTO Usuarios (Nombre, NoControl, FechaNac, Escuela, Celular) VALUES (?, ?, ?, ?, ?)";
     
+    // Prepare the SQL statement
     $stmt = $conn->prepare($sql);
 
-    $stmt->execute([$nombre, $numero_control, $fecha_nacimiento, $escuela, $celular]);
+    // Bind parameters and execute the statement
+    $stmt->bind_param("sssss", $nombre, $numero_control, $fecha_nacimiento, $escuela, $celular);
+    $stmt->execute();
 
-} catch (PDOException $e) {
+    // Check if the execution was successful
+    if ($stmt->affected_rows > 0) {
+        echo "Datos guardados exitosamente.";
+    } else {
+        echo "No se pudo guardar los datos.";
+    }
+
+    // Close the statement
+    $stmt->close();
+
+} catch (Exception $e) {
     die("Error al guardar los datos: " . $e->getMessage());
 }
+
 
 
 ?>
