@@ -61,6 +61,14 @@ nav ul li a {
     padding: 50px;
 }
 
+.middle_logo {
+    background-color: #dbb5ff;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+}
+
+
 .middle_container {
     background-color: #dbb5ff;
     display: flex;
