@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="en" style="background-color: white;">
-
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quienes somos?</title>
+    <title>CLINICAS</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
     <header>
         <div class="logo">
@@ -18,21 +16,58 @@
                 <li><a href="Brujula.html">Inicio</a></li>
                 <li><a href="Somos.html">Quiénes somos?</a></li>
                 <li><a href="Servicios.html">Servicios</a></li>
+                
+                <li><a href="Descargar.html">Descargar app</a></li>
                 <li><a href="clinicas.php">Clinicas</a></li>
                 <li><a href="Registro.php">Registro</a></li>
                 <li><a href="Perfil.php">Perfil</a></li>
             </ul>
         </nav>
-    </header>
-    <h1>PROBLEMATICA Y JUSTIFICACION</h1>
-    <div class="container">
-        <div class="right-section" style="background-color: #dbb5ff; padding: 7em; padding-top: 0; padding-bottom: 0;">
-            <p>La problemática que se atiende  Brújula Emocional es la falta de acceso y calidad de los servicios de orientación y ayuda psicológica para los jóvenes y los adultos que sufren de trastornos psicológicos o que requieren de apoyo emocional. Esta problemática afecta a una gran parte de la población, especialmente en México, donde se estima que el 28.6% de los adultos ha padecido algún trastorno mental a lo largo de su vida, y que el 75% de ellos no recibe atención adecuada.  
-            </p>
-            <p>La justificación del proyecto se basa en la evidencia de que la orientación y la ayuda psicológica pueden mejorar la salud mental y la calidad de vida de los jóvenes y los adultos, así como prevenir y tratar los trastornos mentales que los afectan. Brújula Emocional ofrece una solución innovadora, accesible y personalizada, que utiliza la tecnología móvil para conectar a los usuarios con profesionales de la salud mental, y para brindarles recursos e información de interés.
-            </p>
-        </div>
+    </header>    
+    <h1>CLINICAS</h1>
+    <div class="button-container" style="display: flex;
+    justify-content: center;
+    margin-top: 20px; ">
+    <a href="RegistroClinicas.php"> <button class="custom-button" style="background-color: #bd96e2;
+        color: white;
+        padding: 15px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 1.2em;
+        font-weight: bold;
+        transition: background-color 0.3s ease;">Nuevo Registro</button></a>
     </div>
+    <?php
+        include 'conexion.php';
+
+        try {
+            // Query para obtener las clínicas de la base de datos
+            $sql = "SELECT * FROM Clinicas";
+            $result = $conn->query($sql);
+
+            // Verificar si se encontraron clínicas
+            if ($result->num_rows > 0) {
+                // Mostrar cada clínica
+                while($row = $result->fetch_assoc()) {
+                    echo '<div class="container">';
+                    echo '<div class="left-section">';
+                    //some some
+                    echo '</div>';
+                    echo '<div class="right-section">';
+                    echo '<h1>' . $row['nombre'] . '</h1>';
+                    echo '<p>' . $row['descripcion'] . '</p>';
+                    echo '</div>';
+                    echo '</div>';
+                }
+            } else {
+                echo "No se encontraron clínicas.";
+            }
+
+        } catch (Exception $e) {
+            die("Error al obtener las clínicas: " . $e->getMessage());
+        }
+    ?>
 </body>
 <footer>
     <div class="footer-content">

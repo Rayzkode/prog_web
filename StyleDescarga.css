@@ -47,7 +47,7 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #bd96e2;
+    color: #bbd1c4;
     /* Lila */
     text-decoration: none;
     font-size: 1.5em;
@@ -96,7 +96,7 @@ nav ul li a {
 }
 
 .right-section h1 {
-    color: #bd96e2;
+    color: #bbd1c4;
     font-size: 50px;
 
 }
@@ -168,7 +168,7 @@ footer {
 
 
 .footer-bottom {
-    background-color: #bd96e2;
+    background-color: #bbd1c4;
     text-align: center;
     padding: 20px 0;
 }

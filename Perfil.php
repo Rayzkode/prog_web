@@ -15,52 +15,49 @@
 <body>
     <h1>Información del Usuario</h1>
     <?php
-include 'conexion.php'; // incluir archivo de conexión
+    include 'conexion.php'; // Incluir archivo de conexión
 
-try {
     $sql = "SELECT * FROM Usuarios";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
-    
-    // Recorrer todas las filas de resultados
-    while ($usuario = $stmt->fetch()) {
-        ?>
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Número de control</th>
-                <th>Fecha de nacimiento</th>
-                <th>Escuela</th>
-                <th>Celular</th>
-                <th>Agregar</th>
-                <th>Editar</th>
-                <th>Eliminar</th>
-            </tr>
-            <tr>
-                <td><?php echo $usuario['UsID']; ?></td>
-                <td><?php echo $usuario['Nombre']; ?></td>
-                <td><?php echo $usuario['NoControl']; ?></td>
-                <td><?php echo $usuario['FechaNac']; ?></td>
-                <td><?php echo $usuario['Escuela']; ?></td>
-                <td><?php echo $usuario['Celular']; ?></td>
-                <td class="CRUD"><a href="Registro.php">Agregar</a></td>
-                <td class="CRUD"><a href='Editar.php?id=<?php echo $usuario['UsID']; ?>'>Editar</a></td>
-                <td class="CRUD"><a href='DeleteData.php?id=<?php echo $usuario['UsID']; ?>'>Eliminar</a></td>
-            </tr>
-        </table>
-        <?php
-    } // fin del bucle while sexo
+    $result = $conn->query($sql);
 
-    // Check if there were no results
-    if (!$usuario) {
+    if ($result && $result->num_rows > 0) {
+        // Iniciar la tabla si hay resultados
+        echo "<table>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Número de control</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Escuela</th>
+                    <th>Celular</th>
+                    <th>Agregar</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                </tr>";
+
+        // Recorrer todas las filas de resultados
+        while ($usuario = $result->fetch_assoc()) {
+            echo "<tr>
+                    <td>{$usuario['UsID']}</td>
+                    <td>{$usuario['Nombre']}</td>
+                    <td>{$usuario['NoControl']}</td>
+                    <td>{$usuario['FechaNac']}</td>
+                    <td>{$usuario['Escuela']}</td>
+                    <td>{$usuario['Celular']}</td>
+                    <td class='CRUD'><a href='Registro.php'>Agregar</a></td>
+                    <td class='CRUD'><a href='Editar.php?id={$usuario['UsID']}'>Editar</a></td>
+                    <td class='CRUD'><a href='DeleteData.php?id={$usuario['UsID']}'>Eliminar</a></td>
+                </tr>";
+        }
+
+        // Cerrar la tabla después del bucle
+        echo "</table>";
+    } else {
         echo "No se encontraron usuarios.";
     }
 
-} catch (PDOException $e) {
-    echo "Error al recuperar usuarios: " . $e->getMessage();
-}
-?>
-
+    // Cerrar la conexión
+    $conn->close();
+    ?>
 </body>
 </html>
